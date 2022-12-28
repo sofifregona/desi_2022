@@ -76,15 +76,6 @@
 	idCiudadSeleccionada = window.location.pathname.split("/")[2];
 	if (idCiudadSeleccionada == null){
 		idCiudadSeleccionada = (document.getElementById("editar").getAttribute("href").split("/")[2]);
-		/*const fecha = new Date()
-    	const hoy = fecha.getDate();
-    	const fechas = []
-    
-    	for (i = 0; i < 10; i++){
-			fecha.setDate(fecha.getDate() + 1);
-			console.log(fecha)
-			console.log(document.getElementById("tbody"))
-		}*/
 	}
     document.getElementById("idCiudadSeleccionada").setAttribute("value", `${idCiudadSeleccionada}`);
     document.getElementById("agregar").setAttribute("href", `/climaExtendidoEditar/${idCiudadSeleccionada}`);

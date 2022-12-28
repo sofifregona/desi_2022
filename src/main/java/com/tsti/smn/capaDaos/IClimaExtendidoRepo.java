@@ -18,7 +18,7 @@ import com.tsti.smn.pojos.ClimaExtendido;
 @Repository
 public interface IClimaExtendidoRepo extends JpaRepository<ClimaExtendido, Long> {
 
-	@Query("SELECT ce FROM ClimaExtendido ce WHERE ce.ciudad.id like ?1")
+	@Query("SELECT ce FROM ClimaExtendido ce WHERE ce.ciudad.id like ?1 and ce.fecha > curdate()")
 	List<ClimaExtendido> findByIdCiudad(Long idCiudadSeleccionada);
 	
 	@Query("SELECT ce FROM ClimaExtendido ce WHERE ce.fecha like ?1 and ce.ciudad.id like ?2")
