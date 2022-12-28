@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+    <title><span th:text="#{climaExtendido.editar.titulo}"/></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+	
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="fecha"]'); 
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'dd/mm/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
+
+<body>
+	
+	<div class="starter-template">
+        <h1><span  th:text="#{empresa}" /></h1>
+        <h2 th:text="${formBean.id} ? #{climaExtendido.editar.titulo}: #{climaExtendido.editar.titulo}" />
+    </div>
+	
+	<form  th:action="@{/climaExtendidoEditar}" th:object="${formBean}" method="post">
+		<p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+		<input type="hidden" id="idCiudad" th:field="*{idCiudad}">
+		
+		<table border="0" style="align-self: center;">
+	    	
+			<tr>
+	            <td><label th:text="#{climaExtendido.fecha.titulo}" /></td>
+	            <td><input type="text" id="fecha" autocomplete="off" th:field="*{fecha}" placeholder="DD/MM/YYYY" /></td> 
+	            <td> <p th:if="${#fields.hasErrors('fecha')}" th:errorclass="error" th:errors="*{fecha}" /> </td>
+	        </tr>
+	        <tr>
+	            <td><label th:text="#{climaExtendido.porcentajeLluvia.titulo}" /></td>
+	            <td><input type="number" th:field="*{porcentajeLluvia}" /></td>
+	            <td> <p th:if="${#fields.hasErrors('porcentajeLluvia')}" th:errorclass="error" th:errors="*{porcentajeLluvia}" /> </td>
+	        </tr>
+	        <tr>
+	            <td><label th:text="#{climaExtendido.mmLluvia.titulo}" /></td>
+	            <td><input type="number" th:field="*{mmLluvia}" /></td> 
+	            <td> <p th:if="${#fields.hasErrors('mmLluvia')}" th:errorclass="error" th:errors="*{mmLluvia}" /> </td> 
+	        </tr>
+	        <tr>
+	            <td><label th:text="#{climaExtendido.descripcion.titulo}" /></td>
+	            <td><input type="text" th:field="*{descripcion}" /></td> 
+	            <td> <p th:if="${#fields.hasErrors('descripcion')}" th:errorclass="error" th:errors="*{descripcion}" /> </td> 
+			</tr>
+	               
+	  </table>
+	  
+	  
+	  
+	  <table class="botones">
+	      <tr>
+		      <td><input type="submit" name="action" value="Aceptar" /></td>
+		      <td><input type="submit" name="action" value="Cancelar" /></td>
+	      </tr>     
+	  </table>
+
+	</form>
+<script>
+	idCiudad = window.location.pathname.split("/")[2];
+    document.getElementById("idCiudad").setAttribute("value", `${idCiudad}`);
+</script>
+</body>
+	
+	
+</html>
