@@ -55,6 +55,8 @@
 	        <th ><label th:text="#{ciudad.provincia}" /></th>
 	        <th ></th>
 	        <th ></th>
+	        <th sec:authorize="hasAuthority('ADMIN')"></th>
+	        <th sec:authorize="hasAuthority('ADMIN')"></th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -79,6 +81,12 @@
                 <td>
                     <a th:href="@{/climaExtendidoBuscar/{id}(id=${p.id})}" class="btn btn-primary">
                         Clima extendido
+                    </a>
+                </td>
+                
+                <td>
+                    <a th:href="@{/ciudadEditarClima/{id}(id=${p.id})}" class="btn btn-primary">
+                        Clima Actual
                     </a>
                 </td>
 		        
