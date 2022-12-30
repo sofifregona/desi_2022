@@ -2,16 +2,22 @@ package com.tsti.smn.capaPresentacion.climaActual;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
+
 import com.tsti.smn.pojos.ClimaActual;
 
 public class ClimaForm {
 
 	private Long id;
 	@NotNull
+	@Range(min=0, message = "La temperatura no puede ser menor a 0")
 	private int temperatura;
 	@NotNull
+	@Range(min=0, message = "La humedad no puede ser menor a 0")
 	private int humedad;
+	@NotNull
 	private Long idEstado;
+	@NotNull
 	private Long idCiudad;
 		
 	public Long getId() {
