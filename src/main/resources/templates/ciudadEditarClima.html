@@ -35,11 +35,22 @@
         <tr>
             <td><label th:text="#{ciudad.humedad}" /></td>
             <td><input type="number" th:field="*{humedad}" /></td>  
+            <td> 
+		             <ul>
+				        <li th:each="err : ${#fields.errors('humedad')}" th:text="${err}" class="error" />
+				    </ul> 
+			   	</td>
         </tr>
         
         <tr>
             <td><label th:text="#{ciudad.temperatura}" /></td>
             <td><input type="number" th:field="*{temperatura}" /></td>  
+            <td> 
+		             <ul>
+				        <li th:each="err : ${#fields.errors('temperatura')}" th:text="${err}" class="error" />
+				    </ul> 
+			   	</td>
+            
         </tr>
        
         <tr>
