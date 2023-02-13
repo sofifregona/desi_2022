@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title><span th:text="#{ciudad.editar.clima.titulo}"/></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+
+<body>
+
+	<div class="starter-template">
+        <h1><span  th:text="#{empresa}" /></h1>
+        <h2 th:text="${formBean.id} ? #{ciudad.editar.clima.titulo}: #{ciudad.editar.clima.titulo}" />
+        
+    </div>
+    
+<form  th:action="@{/ciudadEditarClima}" th:object="${formBean}" method="post">
+	<p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+	<input type="hidden" id="id" th:field="*{id}">
+	<input type="hidden" id="idCiudad" th:field="*{idCiudad}">
+	<table border="0" style="align-self: center;">
+		         
+       <!--<tr>
+            <td><label th:text="#{ciudad.nombre}" /></td>
+            <td><label th:text="*{climaActual.Ciudad.nombre}" /></td> 
+            <td> <p th:if="${#fields.hasErrors('idCiudad')}" th:errorclass="error" th:errors="*{idCiudad}" /> </td> 
+        </tr>-->
+                      
+        <tr>
+            <td><label th:text="#{ciudad.humedad}" /></td>
+            <td><input type="number" th:field="*{humedad}" /></td>  
+            <td> 
+		             <ul>
+				        <li th:each="err : ${#fields.errors('humedad')}" th:text="${err}" class="error" />
+				    </ul> 
+			   	</td>
+        </tr>
+        
+        <tr>
+            <td><label th:text="#{ciudad.temperatura}" /></td>
+            <td><input type="number" th:field="*{temperatura}" /></td>  
+            <td> 
+		             <ul>
+				        <li th:each="err : ${#fields.errors('temperatura')}" th:text="${err}" class="error" />
+				    </ul> 
+			   	</td>
+            
+        </tr>
+       
+        <tr>
+            <td><label th:text="#{estado.nombre}" /></td>
+            <td>
+		        <select th:field="*{idEstado}">
+		          <option th:each="e:${allEstados}" 
+				          th:value="${e.id}" 
+				          th:text="${e.descripcion}"></option>
+				</select>
+			</td>
+		</tr>
+        
+  </table>
+  <table class="botones">
+      <tr>
+	      <td><input type="submit" name="action" value="Aceptar" /></td>
+	      <td><input type="submit" name="action" value="Cancelar" /></td>
+      </tr>
+    </table>
+    
+</form>
+
+<script>
+	idCiudad = window.location.pathname.split("/")[2];
+    document.getElementById("idCiudad").setAttribute("value", `${idCiudad}`);
+</script>
+
+</body>
+</html>	

@@ -21,6 +21,9 @@ public interface IClimaExtendidoRepo extends JpaRepository<ClimaExtendido, Long>
 	@Query("SELECT ce FROM ClimaExtendido ce WHERE ce.ciudad.id like ?1 and ce.fecha > curdate()")
 	List<ClimaExtendido> findByIdCiudad(Long idCiudadSeleccionada);
 	
+	@Query("SELECT ce FROM ClimaExtendido ce WHERE ce.ciudad.id like ?1 and ce.fecha > curdate() and ce.fecha < ?2")
+	List<ClimaExtendido> findByIdCiudadForUser(Long idCiudadSeleccionada, LocalDate fechaADiezDias);
+	
 	@Query("SELECT ce FROM ClimaExtendido ce WHERE ce.fecha like ?1 and ce.ciudad.id like ?2")
 	ClimaExtendido findByFechaAndIdCiudad(LocalDate fecha, Long idCiudadSeleccionada);
 	

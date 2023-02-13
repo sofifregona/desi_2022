@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+	
+    <div style="text-align: right;">
+	        <div>Bienvenido: <span sec:authentication="name"></span></div>
+	        <div>Permisos:<span sec:authentication="principal.authorities"> </span></div>
+        <form th:action="@{/logout}" method="post">
+	        <input type="submit" value="Logout" />
+	    </form>
+	</div>  
+	
+   <div class="starter-template">
+        <h1>Trabajo Práctico DESI</h1>
+        <h2>
+            <span th:text="${confirmacion}"></span>
+            <br>
+            <a th:href="@{/}"><button> Aceptar </button></a>
+        </h2>
+    </div>
+    
+    
+
+        
+  </body>
+</html>
