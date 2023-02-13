@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.tsti.smn.capaPresentacion.climaExtendido.ClimaExtendidoBuscarForm;
+import com.tsti.smn.capaPresentacion.verClima.VerClimaForm;
 import com.tsti.smn.excepciones.Excepcion;
 import com.tsti.smn.pojos.Ciudad;
 import com.tsti.smn.pojos.ClimaExtendido;
@@ -31,7 +32,9 @@ public interface ClimaExtendidoService {
 	
 	ClimaExtendido getById(Long idClimaExtendido);
 	ClimaExtendido getByFechaAndIdCiudad(LocalDate fecha, Long idCiudad);
-	
+
+
+	List<ClimaExtendido> filter2(VerClimaForm filter);
 	List<ClimaExtendido> filter(ClimaExtendidoBuscarForm filter) throws Excepcion;
 	
 

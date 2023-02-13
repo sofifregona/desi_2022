@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.tsti.smn.capaDaos.IClimaExtendidoRepo;
 import com.tsti.smn.capaPresentacion.climaExtendido.ClimaExtendidoBuscarForm;
+import com.tsti.smn.capaPresentacion.verClima.VerClimaForm;
 import com.tsti.smn.excepciones.Excepcion;
 import com.tsti.smn.pojos.ClimaExtendido;
 
@@ -36,6 +37,11 @@ public class ClimaExtendidoServiceImpl implements ClimaExtendidoService {
 	@Override
 	public ClimaExtendido getByFechaAndIdCiudad(LocalDate fecha, Long idCiudad) {
 			return repo.findByFechaAndIdCiudad(fecha, idCiudad);
+	}
+	
+	@Override
+	public List<ClimaExtendido> filter2 (VerClimaForm filter2){
+		return repo.findByIdCiudadForUser(filter2.getId(), filter2.getFechaADiezDias());
 	}
 	
 	@Override
